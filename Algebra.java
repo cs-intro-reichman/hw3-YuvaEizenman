@@ -73,8 +73,9 @@ public class Algebra {
 			for (int i = 0; i < -b; i++) {
 				sum = plus(sum, a);
 			}
+			sum = -sum; 
 		}	
-		sum = -sum;   
+		  
 		return sum;
 	}
 
