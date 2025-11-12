@@ -28,8 +28,11 @@ public class LoanCalc {
 	// Computes the ending balance of a loan, given the loan amount, the periodical
 	// interest rate (as a percentage), the number of periods (n), and the periodical payment.
 	private static double endBalance(double loan, double rate, int n, double payment) {	
-		// Replace the following statement with your code
-		return 0;
+		double balance = loan;
+        for (int year = 1; year <= n; year++) {
+            balance = balance * (1.0 + rate) - payment;
+        }
+        return balance;
 	}
 	
 	// Uses sequential search to compute an approximation of the periodical payment
@@ -38,8 +41,15 @@ public class LoanCalc {
 	// the number of periods (n), and epsilon, the approximation's accuracy
 	// Side effect: modifies the class variable iterationCounter.
     public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {
-		// Replace the following statement with your code
-		return 0;
+		iterationCounter = 0;  
+		double g = loan / n;                     
+		double f = endBalance(loan, rate, n, g);  
+		while (f > 0) {
+			g = g + epsilon;                    
+			f = endBalance(loan, rate, n, g);     
+			iterationCounter++;               
+		}
+		return g;
     }
     
     // Uses bisection search to compute an approximation of the periodical payment 
@@ -48,7 +58,21 @@ public class LoanCalc {
 	// the number of periods (n), and epsilon, the approximation's accuracy
 	// Side effect: modifies the class variable iterationCounter.
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {  
-        // Replace the following statement with your code
-		return 0;
+		iterationCounter = 0;
+		double L = loan / n;  
+    	double H = loan;
+		double fL = endBalance(loan, rate, n, L);
+    	double fH = endBalance(loan, rate, n, H);
+		while ((H - L) > epsilon) {
+			double mid = (L + H) / 2.0;
+			double fMid = endBalance(loan, rate, n, mid);
+			iterationCounter++;
+			if (fMid > 0) {
+				L = mid; 
+			} else {
+				H = mid;  
+			}
+    }
+		return (L + H) / 2.0;
     }
 }
