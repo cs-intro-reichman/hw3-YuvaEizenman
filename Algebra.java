@@ -82,7 +82,7 @@ public class Algebra {
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
 		int res = 1;
-		for (int i = 0; i < n - 1; i++) {
+		for (int i = 0; i < n ; i++) {
 			res = times(res, x);
 		}
 		return res;
