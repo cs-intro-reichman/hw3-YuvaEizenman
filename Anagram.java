@@ -70,6 +70,7 @@ public class Anagram {
 			}
     }
     	return ans;
+		
 	} 
 	   
 	// Returns a random anagram of the given string. The random anagram consists of the same
